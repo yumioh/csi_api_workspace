@@ -13,9 +13,7 @@ params = {
     'returnType': 'JSON'
 }
 
-
-url = 'https://api.csi.go.kr/api/service/nms/nmsInfo'
-
+url = 'https://api.csi.go.kr/api/service/nms/nmsInfo?'
 r = requests.get(url, params=params)
 
 print(r.text)
