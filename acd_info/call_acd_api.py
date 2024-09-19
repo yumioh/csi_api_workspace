@@ -7,7 +7,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from modules import api_utils
 
 '''
-사고사례 : 목록 조회
+사고사례 : 목록 조회 => 개인정보로 인해 수집 불가능. 별도 부서를 통해 데이터 신청 요청
 '''
 
 # API 키 불러오기
