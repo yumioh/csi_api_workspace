@@ -4,8 +4,11 @@ import pandas as pd
 import datetime as dt
 import sys, os # add the parent directory
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-
 from modules import api_utils
+
+'''
+통합포털 - 자료실 서비스 : 목록 조회
+'''
 
 # API 키 불러오기
 load_dotenv()

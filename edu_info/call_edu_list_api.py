@@ -3,6 +3,11 @@ import os
 from dotenv import load_dotenv
 import pandas as pd
 
+'''
+사용자교육 - 온라인교육강의서비스 : 목록 조회
+'''
+
+
 #call api key 
 load_dotenv()
 edu_api_key = os.getenv('EDU_API_KEYS')

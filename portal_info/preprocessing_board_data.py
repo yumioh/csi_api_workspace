@@ -2,7 +2,7 @@ import pandas as pd
 import datetime as dt
 import re
 
-board_info_df = pd.read_csv('./portal_info/data/board_info.csv', encoding="utf-8-sig")
+board_info_df = pd.read_csv('./portal_info/data/board_info.csv', encoding="utf-8-sig", index_col=0)
 print(f'공백 처리 전 : {board_info_df.shape}')
 print(f'공백 처리 전 : {board_info_df["bbtContent"][:10]}')
 
@@ -13,6 +13,9 @@ board_info_df["bbtContent"] = board_info_df["bbtContent"].apply(lambda x: re.sub
 board_info_df["bbtContent"] = board_info_df["bbtContent"].apply(lambda x: re.sub(' +', ' ', x) if isinstance(x, str) else x)
 
 print(f'공백 처리 후 : {board_info_df["bbtContent"][:10]}')
+
+#unamed 행 삭제
+#board_info_df.drop(['Unnamed: 0'], axis=1, inplace=True)
 
 #공백 처리한 파일 저장
 board_info_df.to_csv('./portal_info/data/board_info.csv', encoding="utf-8-sig")

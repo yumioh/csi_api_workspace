@@ -2,6 +2,10 @@ import requests
 import os
 from dotenv import load_dotenv
 
+'''
+아차사고
+'''
+
 ##call api key 
 load_dotenv()
 nm_api_key = os.getenv('NM_API_KEYS')
