@@ -1,6 +1,7 @@
 import requests
 from dotenv import load_dotenv
 import pandas as pd
+import datetime as dt
 import sys, os # add the parent directory
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
@@ -9,6 +10,9 @@ from modules import api_utils
 # API 키 불러오기
 load_dotenv()
 bd_api_key = os.getenv('BD_API_KEY')
+
+#오늘날짜 불려오기 
+date = dt.datetime.now().strftime("%y%m%d")
 
 # 페이지 번호 초기화 및 데이터 저장 리스트 초기화
 i = 1
@@ -46,8 +50,8 @@ while True:
     i += 1
 
 # 최종 DataFrame으로 변환 후 CSV 저장
-bd_df = pd.DataFrame(all_data)
-print(bd_df.shape)
-bd_df.to_csv('./portal_info/data/board_info.csv', encoding="utf-8-sig")
+board_df = pd.DataFrame(all_data)
+print(f'board info shape  : {board_df.shape}')
 
-print("데이터 수집 완료 및 저장.")
+board_df.to_csv(f'./portal_info/data/board_info_{date}.csv', encoding="utf-8-sig")
+print("데이터 수집 완료 및 저장")
