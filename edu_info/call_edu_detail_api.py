@@ -9,7 +9,7 @@ import pandas as pd
 '''
 #call api key 
 load_dotenv()
-edu_api_key = os.getenv('EDU_API_KEYS')
+edu_api_key = os.getenv('EDU_API_KEY')
 
 params = {
     'serviceKey': edu_api_key,
@@ -21,7 +21,7 @@ params = {
 
 #eduSeq 확인해보기 
 
-url = "	https://api.csi.go.kr/api/service/edu/onlineEduInfo/1?"
+url = "	https://api.csi.go.kr/api/service/edu/onlineEduInfo?"
 
 res = requests.get(url, params)
 print(res.text)

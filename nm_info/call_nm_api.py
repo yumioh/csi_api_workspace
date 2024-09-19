@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 
 ##call api key 
 load_dotenv()
-nm_api_key = os.getenv('NM_API_KEYS')
+nm_api_key = os.getenv('NM_API_KEY')
 
 params = {
     'serviceKey': nm_api_key,

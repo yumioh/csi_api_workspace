@@ -12,7 +12,7 @@ from modules import api_utils
 '''
 # API 키 불러오기
 load_dotenv()
-bd_api_key = os.getenv('BD_API_KEY')
+acd_api_key = os.getenv('ACD_API_KEY')
 
 #오늘날짜 불려오기 
 date = dt.datetime.now().strftime("%y%m%d")
@@ -30,7 +30,7 @@ all_data = []
 for bbtNo in total_board[:10] : 
     url = f'https://api.csi.go.kr/api/service/com/comDataBbsInfo/{bbtNo}?'
     params = {
-        'serviceKey': bd_api_key,
+        'serviceKey': acd_api_key,
         'numOfRows': 100,
         'returnType': 'JSON'
     }

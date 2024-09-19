@@ -22,7 +22,7 @@ i = 1
 all_data = []
 url = 'https://api.csi.go.kr/api/service/com/comDataBbsInfo?'
 
-# 무한 루프 시작
+
 while True:
     params = {
         'serviceKey': bd_api_key,
