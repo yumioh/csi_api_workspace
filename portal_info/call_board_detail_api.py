@@ -14,6 +14,9 @@ from modules import api_utils
 load_dotenv()
 acd_api_key = os.getenv('ACD_API_KEY')
 
+#디렉토리값 불려오기 
+base_dir = os.getenv('DATA_PATH', './CSI/CSI_API/')
+
 #오늘날짜 불려오기 
 date = dt.datetime.now().strftime("%y%m%d")
 
