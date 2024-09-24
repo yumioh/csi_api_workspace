@@ -13,7 +13,10 @@ load_dotenv()
 edu_api_key = os.getenv('EDU_API_KEY')
 
 #디렉토리값 불려오기 
-base_dir = os.getenv('DATA_PATH', './CSI/CSI_API/')
+base_dir = os.getenv('DATA_PATH')
+
+# 경로를 표준화 (슬러시 문제로 인해 )
+base_dir = os.path.normpath(base_dir)
 
 #오늘날짜 불려오기 
 date = dt.datetime.now().strftime("%y%m%d")
@@ -67,10 +70,10 @@ while True:
 edu_df = pd.DataFrame(all_data)
 print(f'board info shape  : {edu_df.shape}')
 
-edu_df.to_csv(f'./portal_info/data/board_info_{date}.csv', encoding="utf-8-sig")
-print("데이터 수집 완료 및 저장")
-
 #파일로 저장
-file_path = os.path.join(base_dir, 'edu_list_info.csv')
+#edu_df.to_csv(f'./portal_info/data/board_info_{date}.csv', encoding="utf-8-sig")
+file_path = os.path.join(base_dir, f'edu_info_{date}.csv')
 edu_df.to_csv(file_path, encoding="utf-8-sig")
+print(file_path)
+print("데이터 수집 완료 및 저장")
 

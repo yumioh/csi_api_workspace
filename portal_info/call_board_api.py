@@ -15,7 +15,10 @@ load_dotenv()
 bd_api_key = os.getenv('BD_API_KEY')
 
 #디렉토리값 불려오기 
-base_dir = os.getenv('DATA_PATH', './CSI/CSI_API/')
+base_dir = os.getenv('DATA_PATH')
+
+# 경로를 표준화 (슬러시 문제로 인해 )
+base_dir = os.path.normpath(base_dir)
 
 #오늘날짜 불려오기 
 date = dt.datetime.now().strftime("%y%m%d")
@@ -59,6 +62,7 @@ while True:
 board_df = pd.DataFrame(all_data)
 print(f'board info shape  : {board_df.shape}')
 
+#파일로 저장
 file_path = os.path.join(base_dir, f'board_info_{date}.csv')
 board_df.to_csv(file_path, encoding="utf-8-sig")
 print("데이터 수집 완료 및 저장")

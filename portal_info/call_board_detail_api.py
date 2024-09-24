@@ -15,7 +15,10 @@ load_dotenv()
 acd_api_key = os.getenv('ACD_API_KEY')
 
 #디렉토리값 불려오기 
-base_dir = os.getenv('DATA_PATH', './CSI/CSI_API/')
+base_dir = os.getenv('DATA_PATH')
+
+# 경로를 표준화 (슬러시 문제로 인해 )
+base_dir = os.path.normpath(base_dir)
 
 #오늘날짜 불려오기 
 date = dt.datetime.now().strftime("%y%m%d")

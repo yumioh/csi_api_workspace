@@ -20,8 +20,9 @@ params = {
 }
 
 #eduSeq 확인해보기 
+eduSeq = 1
 
-url = "	https://api.csi.go.kr/api/service/edu/onlineEduInfo?"
+url = "	https://api.csi.go.kr/api/service/edu/onlineEduInfo/{eduSeq}?"
 
 res = requests.get(url, params)
 print(res.text)

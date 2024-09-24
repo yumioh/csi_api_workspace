@@ -3,7 +3,7 @@ import os
 from dotenv import load_dotenv
 
 '''
-아차사고
+아차사고 : 현재 CALL할 데이터가 없음
 '''
 
 ##call api key 
