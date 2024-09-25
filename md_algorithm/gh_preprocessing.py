@@ -10,7 +10,7 @@ GH(비사고 데이터)
 - 날짜 => MON값만 추출하여 월값만 저장
 - 요일 => 월,화,수,목,금으로 변경
 - 출생년도 => 나이로 변경
-- 시간 => 6시반으로 열추가 
+- 발생시간 => 6시로 열추가 
 
 '''
 
@@ -39,7 +39,7 @@ print(gh_df.head())
 #요일 한글로 변경
 gh_df["요일별"]= gh_df["요일"].apply(utils.day_to_korean)
 
-gh_df[["공사규모","시간","근무경력","나이","월별","요일별"]].to_csv("./md_algorithm/data/gh_preprocessing.csv"
+gh_df[["공사규모","발생시간","근무경력","나이","월별","요일별"]].to_csv("./md_algorithm/data/gh_preprocessing.csv"
                                                    ,encoding="utf-8",index=False)
 print("저장할 데이터 head :", gh_df.head())
 print("저장할 데이터 shape :", gh_df.shape)
