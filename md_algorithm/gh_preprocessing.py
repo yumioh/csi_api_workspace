@@ -16,8 +16,7 @@ GH(비사고 데이터)
 
 #GH 파일 데이터 들고 오기
 gh_df = pd.read_excel("./md_algorithm/data/gh_accident_cases_240924.xlsx")
-print("GH 데이터 INFO :", gh_df.info())
-print(gh_df.columns)
+# print("GH 데이터 INFO :", gh_df.info())
 #print(gh_df.head())
 
 #year 추출
@@ -25,16 +24,16 @@ gh_df["출생년도"] = gh_df["출생년도"].astype(str).str.split("-").str[0]
 
 # 나이 계산: 2024년 기준으로 출생년도에서 나이 계산
 gh_df['나이'] = 2024 - gh_df["출생년도"].astype(int)
-print("GH 데이터 INFO :", gh_df.info())
-print("GH 데이터 나이 데이터 추가 : ", gh_df.head())
+# print("GH 데이터 INFO :", gh_df.info())
+# print("GH 데이터 나이 데이터 추가 : ", gh_df.head())
 
 #월만 추출
 gh_df["월별"]= pd.to_datetime(gh_df["날짜"]).dt.month
-print(gh_df.head())
+# print(gh_df.head())
 
 #컬럼명 변경
 gh_df.rename(columns={'경력일수':'근무경력'}, inplace=True)
-print(gh_df.head())
+# print(gh_df.head())
 
 #요일 한글로 변경
 gh_df["요일별"]= gh_df["요일"].apply(utils.day_to_korean)
