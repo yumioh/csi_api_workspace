@@ -25,7 +25,7 @@ kosha_df = kosha_df.dropna(axis=0)
 print("KOSHA DATA", kosha_df)
 print("KOSHA DATA INFO : ", kosha_df.info())
 
-#공사규모 변환
+#공사규모 변환1992
 kosha_df["공사규모"] = kosha_df["공사규모"].apply(utils.convert_scale_to_person_range)
 print(kosha_df)
 
