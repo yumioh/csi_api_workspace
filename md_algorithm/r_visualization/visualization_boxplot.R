@@ -17,7 +17,7 @@ summary(kosha_data)
 box <- boxplot(gh_data$공사규모, kosha_data$공사규모, names = c("비사고데이터", "사고데이터"), main = "공사규모 BOXPLOT", col = c("#F2E64D","#19396d"))
 box <- boxplot(gh_data$발생시간, kosha_data$발생시간, names = c("비사고데이터", "사고데이터"), main = "발생시간 BOXPLOT", col = c("#F2E64D","#19396d"))
 box <- boxplot(gh_data$근무경력, kosha_data$근무경력, names = c("비사고데이터", "사고데이터"), main = "근무경력 BOXPLOT", col = c("#F2E64D","#19396d"))
-box <- boxplot(gh_data$나이, kosha_data$근무경력, names = c("비사고데이터", "사고데이터"), main = "나이 BOXPLOT", col = c("#F2E64D","#19396d"))
+box <- boxplot(gh_data$나이, kosha_data$나이, names = c("비사고데이터", "사고데이터"), main = "나이 BOXPLOT", col = c("#F2E64D","#19396d"))
 box <- boxplot(gh_data$월별, kosha_data$월별, names = c("비사고데이터", "사고데이터"), main = "월별 BOXPLOT", col = c("#F2E64D","#19396d"))
 box <- boxplot(gh_data$요일별, kosha_data$요일별, names = c("비사고데이터", "사고데이터"), main = "요일별 BOXPLOT", col = c("#F2E64D","#19396d"))
 
@@ -33,20 +33,19 @@ text(x = c(1.5, 2.3), y = box_stats[5,], labels = round(box_stats[5,], 2), col =
 ###### 히스토그램 그리기 ######
 
 #histgram 그리기 plot = FALSE는 histogram을 그리지 않고 데이터만 계산
-#breaks <- seq(1, 7, by=1)
-gh_hist = hist(gh_data$근무경력, plot = FALSE)
-kosha_hist = hist(kosha_data$근무경력,plot = FALSE)
+breaks <- seq(1, 4)
+gh_hist = hist(gh_data$나이,plot = FALSE)
+kosha_hist = hist(kosha_data$나이,plot = FALSE)
 
 #ylim : y축 범위, adjustcolor : 불투명도
-plot(gh_hist, col=adjustcolor("#F2E64D", alpha=1),ylim=c(0, 65000),add=TRUE)
-plot(kosha_hist, col=adjustcolor("#19396d", alpha=0.7), xlab="", main = "근무경력 histogram",  ylab="빈도",xaxt = "n")
+plot(gh_hist, col=adjustcolor("#F2E64D", alpha=0.9), xlab="", main = "공사규모 histogram",  ylab="빈도",xaxt = "n",ylim=c(0, 65000))
+plot(kosha_hist, col=adjustcolor("#19396d", alpha=0.7),add=TRUE)
 
 # 범례 추가 cex: FONT SIZE, toright : 범례 위치
 legend("topright",legend=c("비사고데이터","사고데이터터"),fill=c("#F2E64D","#19396d"),cex = 0.8)
 
-
 #공사규모 x축 레이블 추가
-axis(1, at = c(1,2,3,4), labels=c("9명이하","10~99명이하","100~499명이하","500명이하"), cex.axis = 0.8)
+axis(1, at = c(1,2,3,4), labels=c("9명이하","10~99명이하","100~499명이하","500명이상"), cex.axis = 0.8)
 
 #발생시간 x축 레이블 추가
 axis(1, at = c(1,2,3,4,5,6,7), labels=c("0~6시","6~8시","8~12시","12~13시","13~18시","18~21시","21~24시"), cex.axis = 0.8)
@@ -70,10 +69,18 @@ axis(1, at = c(1,2,3,4,5,6,7), labels=c("월","화","수","목","금","토","일
 gh_freq <- table(gh_data$나이)         
 kosha_freq <- table(kosha_data$나이)
 
+# gh_freq와 kosha_freq의 이름을 숫자형으로 변환해 정렬
+####나이 레이블이 순서가 마지 않아 변경을 위해 작성 
+gh_freq_sorted <- gh_freq[order(as.numeric(names(gh_freq)))]
+kosha_freq_sorted <- kosha_freq[order(as.numeric(names(kosha_freq)))]
+
 # 비사고 데이터와 사고 데이터에서 발생한 고유한 발생시간 값을 중복 없이, 오름차순으로 정렬한 값
 # sort : 정렬 unique : 중복된 값 제거 
 # 발생시간의 모든 범위 확보
-all_times <- sort(unique(c(names(gh_freq), names(kosha_freq))))  
+all_times <- sort(unique(c(names(gh_freq), names(kosha_freq)))) 
+
+####나이 레이블이 순서가 마지 않아 변경을 위해 작성 
+all_times <- sort(as.numeric(unique(c(names(gh_freq_sorted), names(kosha_freq_sorted)))))
 
 # gh_freq와 kosha_freq 모두에 대해 발생시간 범위를 일치시키기 위해 0으로 채워줌
 gh_freq_full <- rep(0, length(all_times))
@@ -94,7 +101,7 @@ bp <- barplot(combined_data,
         beside = TRUE,                    # 막대를 나란히 배치
         col = c("#F2E64D", "#19396d"),    # 각각의 색상 지정
         main = "나이별 barplot",
-        ylim = c(0,50000),
+        ylim = c(0,65000),
         ylab = "빈도", 
         xlab = "나이별",
         xaxt = "n") #x축 레이블 없애기
@@ -124,3 +131,5 @@ axis(1, at=colMeans(bp), labels=c("18세미만","19~24세이하","25~29세이하
 
 #요일별 x축 레이블 추가
 axis(1, at=colMeans(bp), labels=c("월","화","수","목","금","토","일"), cex.axis = 0.8)
+
+

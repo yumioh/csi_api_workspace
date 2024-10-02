@@ -37,9 +37,9 @@ kosha_df["요일별"] = kosha_df["요일별"].apply(utils.day_to_korean)
 #날짜 데이터 mon만 추출
 kosha_df["월별"] = kosha_df["날짜"].dt.month
 
-#나이계산
-kosha_df["나이"] = 2024 - kosha_df["출생년도"].astype(int)
-print(kosha_df)
+#사고 발생일자 기준으로 나이 계산
+kosha_df["나이"] = kosha_df["발생일자"].dt.year - kosha_df["출생년도"].astype(int)
+#print(kosha_df.head())
 
 #컬럼명 변경
 kosha_df.rename(columns={'경력일수':'근무경력'}, inplace=True)

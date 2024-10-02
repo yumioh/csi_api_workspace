@@ -60,12 +60,13 @@ def categorize_service_years(service_year) :
         return "10년이상"
 
 def categorize_service_years_num(service_year) :
-    one = ["1개월미만","1개월~2개월미만","3개월~4개월미만","4개월~5개월미만","6개월~1년","6개월미만"]
-    two = ["1~2년","1년~2년미만"]
-    three = ["2~3년","2년~3년미만"]
-    four = ["3~4년","3년~4년미만"]
-    five = ["4~5년","4년~5년"]
-    six = ["5~10년","5년~10년"]
+    one = ["1개월미만","1개월~2개월미만","3개월~4개월미만","4개월~5개월미만","6개월미만"]
+    two = ["6개월~1년"]
+    three  = ["1~2년","1년~2년미만"]
+    four = ["2~3년","2년~3년미만"]
+    five = ["3~4년","3년~4년미만"]
+    six = ["4~5년","4년~5년"]
+    seven = ["5~10년","5년~10년"]
 
     if service_year in one :
         return 1
@@ -79,8 +80,10 @@ def categorize_service_years_num(service_year) :
         return 5
     elif service_year in six :
         return 6
-    else:
+    elif service_year in seven :
         return 7
+    else:
+        return 8
 
 def categorize_age(age) :
     if age < 18 :
@@ -152,35 +155,56 @@ def categorize_scale_num(scale) :
     else :
         return 4
 
-def categorize_time(time) :
-  if 0 <= time < 6:
-      return "0~6시" 
+#2시간 간격으로 변경
+def categorize_time(time) : 
+  if 0 <= time < 2:
+      return "0~2시" 
+  if 2 <= time < 4:
+      return "2~4시"
+  if 4 <= time < 6:
+      return "4~6시" 
   if 6 <= time < 8:
-      return "6~8시" 
-  if 8 <= time < 12:
-      return "8~12시"  
-  if 12 <= time < 13:
-      return "12~13시"
-  if 13 <= time < 18:
-      return "13~18시" 
-  if 18 <= time < 21:
-      return "18~21시"   
-  return "21시~24시"
+      return "6~8시"  
+  if 8 <= time < 10:
+      return "8~10시" 
+  if 10 <= time < 12:
+      return "10~12시" 
+  if 12 <= time < 14:
+      return "12~14시" 
+  if 14 <= time < 16:
+      return "14~16시"  
+  if 16 <= time < 17:
+      return "16~18시"
+  if 18 <= time < 20:
+      return "18~20시" 
+  if 20 <= time < 22:
+      return "20~22시"   
+  return "22시~24시"
 
 def categorize_time_num(time) :
-  if 0 <= time < 6:
+  if 0 <= time < 2:
       return 1
+  if 2 <= time < 4:
+      return 2
+  if 4 <= time < 6:
+      return 3
   if 6 <= time < 8:
-      return 2 
-  if 8 <= time < 12:
-      return 3 
-  if 12 <= time < 13:
-      return 4
-  if 13 <= time < 18:
-      return 5 
-  if 18 <= time < 21:
-      return 6  
-  return 7
+      return 4  
+  if 8 <= time < 10:
+      return 5
+  if 10 <= time < 12:
+      return 6
+  if 12 <= time < 14:
+      return 7 
+  if 14 <= time < 16:
+      return 8  
+  if 16 <= time < 17:
+      return 9
+  if 18 <= time < 20:
+      return 10 
+  if 20 <= time < 22:
+      return 11   
+  return 12
 
 def categorize_day_num(day) :
   if day == "월" :
