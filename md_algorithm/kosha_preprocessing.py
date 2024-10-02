@@ -27,7 +27,7 @@ print("KOSHA DATA INFO : ", kosha_df.info())
 
 #공사규모 변환1992
 kosha_df["공사규모"] = kosha_df["공사규모"].apply(utils.convert_scale_to_person_range)
-print(kosha_df)
+print("공사규모 : ", kosha_df[:10])
 
 #날짜 데이터 요일로 변환
 kosha_df["날짜"] = pd.to_datetime(kosha_df["날짜"])
