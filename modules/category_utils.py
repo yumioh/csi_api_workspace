@@ -1,5 +1,3 @@
-
-
 #영어 날짜를 한글 날짜로 변경
 def day_to_korean(day) :
     if day == "Monday":

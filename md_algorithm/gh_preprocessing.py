@@ -33,9 +33,14 @@ gh_df['나이'] = 2024 - gh_df["출생년도"].astype(int)
 gh_df["월별"]= pd.to_datetime(gh_df["날짜"]).dt.month
 # print(gh_df.head())
 
+#라벨 값 추가 => 나중에 그래프를 그리기 위함
+gh_df["라벨"] = "label1"
+
 #이상치 제거 
 #나이 100세 이상 제외
 gh_df = gh_df[gh_df.나이 <= 100]
+gh_df = gh_df[gh_df.나이 >= 15]
+gh_df = gh_df[gh_df["공사규모"] != "50인~99인"]
 
 print("이상치 제거 후 :", gh_df.shape)
 # #컬럼명 변경
@@ -45,7 +50,7 @@ gh_df.rename(columns={'경력일수':'근무경력'}, inplace=True)
 #요일 한글로 변경
 gh_df["요일별"]= gh_df["요일"].apply(utils.day_to_korean)
 
-gh_df[["공사규모","발생시간","근무경력","나이","월별","요일별"]].to_csv("./md_algorithm/data/gh_preprocessing.csv"
+gh_df[["공사규모","발생시간","근무경력","나이","월별","요일별","라벨"]].to_csv("./md_algorithm/data/gh_preprocessing.csv"
                                                    ,encoding="utf-8",index=False)
 print("저장할 데이터 head :", gh_df.head())
 print("저장할 데이터 shape :", gh_df.shape)

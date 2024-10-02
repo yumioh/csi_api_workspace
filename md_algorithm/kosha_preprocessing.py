@@ -41,8 +41,13 @@ kosha_df["월별"] = kosha_df["날짜"].dt.month
 kosha_df["나이"] = kosha_df["발생일자"].dt.year - kosha_df["출생년도"].astype(int)
 #print(kosha_df.head())
 
+#레이블 값 추가 
+kosha_df["라벨"] = "label2"
+
 #컬럼명 변경
 kosha_df.rename(columns={'경력일수':'근무경력'}, inplace=True)
 
 #데이터 저장
-kosha_df[["공사규모","발생시간","근무경력","나이","월별","요일별"]].to_csv("./md_algorithm/data/kosha_preprocessing.csv", encoding="utf-8",index=False)
+kosha_df[["공사규모","발생시간","근무경력","나이","월별","요일별","라벨"]].to_csv("./md_algorithm/data/kosha_preprocessing.csv", encoding="utf-8",index=False)
+print("저장할 데이터 head :", kosha_df.head())
+print("저장할 데이터 shape :", kosha_df.shape)
