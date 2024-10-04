@@ -2,7 +2,7 @@ import pandas as pd
 import datetime as dt
 import sys, os # add the parent directory
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from modules import utils
+from modules import category_utils
 
 ''''
 GH(비사고 데이터)
@@ -48,7 +48,7 @@ gh_df.rename(columns={'경력일수':'근무경력'}, inplace=True)
 # print(gh_df.head()
 
 #요일 한글로 변경
-gh_df["요일별"]= gh_df["요일"].apply(utils.day_to_korean)
+gh_df["요일별"]= gh_df["요일"].apply(category_utils.day_to_korean)
 
 gh_df[["공사규모","발생시간","근무경력","나이","월별","요일별","라벨"]].to_csv("./md_algorithm/data/gh_preprocessing.csv"
                                                    ,encoding="utf-8",index=False)

@@ -2,7 +2,7 @@ import pandas as pd
 import datetime as dt
 import sys, os # add the parent directory
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from modules import utils
+from modules import category_utils
 
 '''
 kosah (사고데이터)
@@ -15,7 +15,6 @@ kosah (사고데이터)
 - 월
 '''
 
-
 kosha_df = pd.read_excel("./md_algorithm/data/kosha_accident_cases_240924.xlsx")
 print("KOSHA DATA", kosha_df)
 print("KOSHA DATA INFO : ", kosha_df.info())
@@ -26,13 +25,13 @@ print("KOSHA DATA", kosha_df)
 print("KOSHA DATA INFO : ", kosha_df.info())
 
 #공사규모 변환1992
-kosha_df["공사규모"] = kosha_df["공사규모"].apply(utils.convert_scale_to_person_range)
+kosha_df["공사규모"] = kosha_df["공사규모"].apply(category_utils.convert_scale_to_person_range)
 print("공사규모 : ", kosha_df[:10])
 
 #날짜 데이터 요일로 변환
 kosha_df["날짜"] = pd.to_datetime(kosha_df["날짜"])
 kosha_df["요일별"] = kosha_df["날짜"].dt.day_name()
-kosha_df["요일별"] = kosha_df["요일별"].apply(utils.day_to_korean)
+kosha_df["요일별"] = kosha_df["요일별"].apply(category_utils.day_to_korean)
 
 #날짜 데이터 mon만 추출
 kosha_df["월별"] = kosha_df["날짜"].dt.month
