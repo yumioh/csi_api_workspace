@@ -35,24 +35,27 @@ def convert_scale_to_person_range(scale):
 #근속연수 카테고리
 def categorize_service_years(service_year) :
     service_year = service_year.strip()
-    one = ["1개월미만","1개월~2개월미만","3개월~4개월미만","4개월~5개월미만","6개월~1년","6개월미만"]
-    two = ["1~2년","1년~2년미만"]
-    three = ["2~3년","2년~3년미만"]
-    four = ["3~4년","3년~4년미만"]
-    five = ["4~5년","4년~5년"]
-    six = ["5~10년","5년~10년"]
+    one = ["1개월미만","1개월~2개월미만","3개월~4개월미만","4개월~5개월미만","6개월미만"]
+    two = ["6개월~1년"]
+    three  = ["1~2년","1년~2년미만"]
+    four = ["2~3년","2년~3년미만"]
+    five = ["3~4년","3년~4년미만"]
+    six = ["4~5년","4년~5년"]
+    seven = ["5~10년","5년~10년"]
 
     if service_year in one :
-        return "1년미만"
+        return "6개월미만"
     elif service_year in two :
-        return "1~2년미만"
+        return "6개월~1년미만"
     elif service_year in three :
-        return "2~3년미만"
+        return "1~2년미만"
     elif service_year in four :
-        return "3~4년미만"
+        return "2~3년미만"
     elif service_year in five :
-        return "4~5년미만"
+        return "3~4년미만"
     elif service_year in six :
+        return "4~5년미만"
+    elif service_year in seven :
         return "5~10년미만"
     else:
         return "10년이상"
