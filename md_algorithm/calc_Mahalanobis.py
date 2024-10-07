@@ -33,7 +33,7 @@ print("filtered gh data : ", filtered_gh.shape)
 kosha_data = kosha_df[["근무경력","나이","월별","요일별"]]
 print("kosha data : ", kosha_data.shape)
 
-print("-------------------kosha calculateMahalanobis 구하기--------------------")
+print("-------------------kosha Mahalanobis 구하기--------------------")
 
 # 비교할 기본값 filtered gh data
 test_robust_cov = math_utils.robust_cov(filtered_gh)
@@ -46,7 +46,7 @@ for kosha_value in kosha_data.values:
     ##filtered_gh.values :  [ 8 47  5  3]
 
 
-print("kosha_list data :", kosha_list)
+print("kosha Mahalanobis data :", kosha_list)
 
 #LIST 파일 저장
 with open("./md_algorithm/data/kosha_Mahal_list.csv","w") as file :
@@ -55,14 +55,14 @@ with open("./md_algorithm/data/kosha_Mahal_list.csv","w") as file :
         writer.writerow([item])
 
 
-print("-------------------gh calculateMahalanobis 구하기--------------------")
+print("-------------------gh Mahalanobis 구하기--------------------")
 
 gh_list = []
 for gh_value in gh_data.values:
     gh_data = math_utils.calculateMahalanobis(gh_value, filtered_gh.values, test_robust_cov)
     gh_list.append(gh_data)
 
-print("gh_list data :", gh_list)
+print("gh Mahalanobis data :", gh_list)
 
 
 #LIST 파일 저장

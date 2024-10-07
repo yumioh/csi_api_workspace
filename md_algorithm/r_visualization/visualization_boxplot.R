@@ -3,8 +3,6 @@
 setwd("C:/workplace/csi_api_workspace/md_algorithm/")
 getwd()
 
-install.packages()
-
 #카테고리한 gh data 불려오기
 gh_data = read.csv("./data/gh_categorize.csv")
 kosha_data = read.csv("./data/kosha_categorize.csv")
@@ -76,8 +74,8 @@ start_position <- 1             # 시작 위치
 positions <- seq(from=start_position, by=group_width, length.out=n_groups)
 
 # 비사고 데이터와 사고 데이터의 발생시간 값 빈도 계산
-gh_freq <- table(gh_data$나이)         
-kosha_freq <- table(kosha_data$나이)
+gh_freq <- table(gh_data$발생시간)         
+kosha_freq <- table(kosha_data$발생시간)
 
 # gh_freq와 kosha_freq의 이름을 숫자형으로 변환해 정렬
 ####나이 레이블이 순서가 마지 않아 변경을 위해 작성 
@@ -110,17 +108,17 @@ combined_data <- rbind(gh_freq_full, kosha_freq_full)
 bp <- barplot(combined_data, 
         beside = TRUE,                    # 막대를 나란히 배치
         col = c("#F2E64D", "#19396d"),    # 각각의 색상 지정
-        main = "나이 barplot",
-        ylim = c(0,5000),
+        main = "발생시간 barplot",
+        ylim = c(0,65000),
         ylab = "빈도", 
-        xlab = "나이",
+        xlab = "발생시간",
         xaxt = "n") #x축 레이블 없애기 
 
 # 범례 추가
 legend("topright", 
        legend = c("비사고 데이터", "사고데이터"), 
        fill = c("#F2E64D", "#19396d"), 
-       cex = 0.8)
+       cex = 0.6)
 
 
 #1: x축, 2:y축, colMeans : 중앙에 배치
@@ -128,7 +126,7 @@ legend("topright",
 axis(1, at=colMeans(bp), labels=c("200명 이상", "50~200인 미만", "9인~50인 미만", "9인 미만"), cex.axis = 0.8)
 
 #발생시간
-axis(1, at=colMeans(bp), labels=c("2~4시","20~22시","4~6시","22~24시","0~2시","18~20시","6~8시","16~18시","12~14시","14~16시","8~10시","10~12시"), cex.axis = 0.8)
+axis(1, at=colMeans(bp), labels=c("2~4시","20~22시","4~6시","22~24시","0~2시","18~20시","6~8시","16~18시","12~14시","14~16시","8~10시","10~12시"), cex.axis = 0.6)
 
 #근무경력 x축 레이블 추가
 axis(1, at=colMeans(bp), labels=c("6개월미만","1년미만","1~2년미만","2~3년미만","3~4년미만","4~5년미만","5~10년미만","10년이상"), cex.axis = 0.8)
