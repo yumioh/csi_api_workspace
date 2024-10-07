@@ -40,11 +40,8 @@ test_robust_cov = math_utils.robust_cov(filtered_gh)
 
 kosha_list = []
 for kosha_value in kosha_data.values:
-    kosha_data = math_utils.calculateMahalanobis(kosha_value, filtered_gh.values, test_robust_cov)
+    kosha_data = math_utils.calc_Mahalanobis(kosha_value, filtered_gh.values, test_robust_cov)
     kosha_list.append(kosha_data)
-    ##kosha_value :  1
-    ##filtered_gh.values :  [ 8 47  5  3]
-
 
 print("kosha Mahalanobis data :", kosha_list)
 
@@ -54,12 +51,11 @@ with open("./md_algorithm/data/kosha_Mahal_list.csv","w") as file :
     for item in kosha_list:
         writer.writerow([item])
 
-
 print("-------------------gh Mahalanobis 구하기--------------------")
 
 gh_list = []
 for gh_value in gh_data.values:
-    gh_data = math_utils.calculateMahalanobis(gh_value, filtered_gh.values, test_robust_cov)
+    gh_data = math_utils.calc_Mahalanobis(gh_value, filtered_gh.values, test_robust_cov)
     gh_list.append(gh_data)
 
 print("gh Mahalanobis data :", gh_list)
