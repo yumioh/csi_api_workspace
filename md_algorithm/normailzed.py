@@ -5,7 +5,9 @@ from modules import math_utils
 
 #kosha, gh 데이터 들고 오기 
 kosha_df = pd.read_csv("./md_algorithm/data/kosha_categorize.csv")
-gh_df = pd.read_csv("./md_algorithm/data/gh_categorize.csv")
+#gh_df = pd.read_csv("./md_algorithm/data/gh_categorize.csv")
+gh_df = pd.read_csv("./md_algorithm/data/gh_categorize_random.csv") #랜덤 데이터 파일 불려오기
+
 
 #마할라로비스 계산한 kosha, gh 데이터 들고 오기
 gh_mal_df = pd.read_csv("./md_algorithm/data/gh_Mahal_list.csv", header = None)
@@ -18,7 +20,8 @@ gh_filtered = pd.read_csv("./md_algorithm/data/filtered_gh.csv")
 test_robust_cov = math_utils.robust_cov(gh_filtered)
 
 #구할 컬럼 
-coulmns = ["근무경력","나이","월별","요일별"]
+#coulmns = ["근무경력","나이","월별","요일별"]
+coulmns = ["공사규모","발생시간","근무경력","나이"]
 
 # print("-------------------kosha Mahalanobis 데이터 프레임으로 만들기--------------------")
 # kosha_mal_df = math_utils.calc_mahalanobis_df(kosha_df, gh_filtered, coulmns, test_robust_cov)
@@ -32,7 +35,9 @@ coulmns = ["근무경력","나이","월별","요일별"]
 print("-------------------정규화 하기--------------------")
 
 #컬럼명 들고 오기
-mal_columns = ["근무경력","나이","월별","요일별"] 
+#mal_columns = ["근무경력","나이","월별","요일별"] 
+mal_columns = ["공사규모","발생시간","근무경력","나이"]
+
 
 #categorize data
 gh_normalized = math_utils.normalize_columns(gh_df, coulmns) 
@@ -41,14 +46,12 @@ print(gh_normalized)
 kosha_normalized = math_utils.normalize_columns(kosha_df, coulmns)
 print(kosha_normalized)
 
-normalized_values = (kosha_mal_df - kosha_mal_df.min()) / (kosha_mal_df.max() - kosha_mal_df.min())
-kosha_normalized["mahal"] = normalized_values
-kosha_normalized.to_csv("./md_algorithm/data/kosha_normalized.csv")
+#최종파일 만들기
+kosha_file_path = "./md_algorithm/data/kosha_normalized.csv"
+math_utils.normailzed(kosha_mal_df, kosha_normalized, kosha_file_path)
 
-normalized_values = (gh_mal_df - gh_mal_df.min()) / (gh_mal_df.max() - gh_mal_df.min())
-gh_normalized["mahal"] = normalized_values
-print(gh_normalized)
-gh_normalized.to_csv("./md_algorithm/data/gh_normalized.csv")
+gh_file_path = "./md_algorithm/data/gh_normalized.csv"
+math_utils.normailzed(gh_mal_df, gh_normalized, gh_file_path)
 
 
 

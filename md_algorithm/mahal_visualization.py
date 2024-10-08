@@ -9,11 +9,13 @@ print("-------------------산점도 그리기 --------------------")
 # plt.savefig("./md_algorithm/data/img/gh_scatter.png")
 # plt.show()
 
-coulmns = ["근무경력","나이","월별","요일별"]
+coulmns = ["공사규모","발생시간","근무경력","나이"]
 
 print("-------------------kosha 박스플롯 그리기 --------------------")  
 kosha = pd.read_csv("./md_algorithm/data/kosha_normalized.csv")
 kosha_mal = pd.read_csv("./md_algorithm/data/kosha_normalized.csv")
+
+print("kosha :", kosha.describe())
 
 for column in coulmns : 
     plt.rcParams['font.family'] ='Malgun Gothic'

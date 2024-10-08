@@ -28,8 +28,7 @@ print(data["근무경력"])
 data["근무경력"] = data["근무경력"].apply(category_utils.categorize_service_years_num)
 #print(data.head())
 
-# 나이 카테고리화 제외 =>데이터 그대로 사용
-#data["나이"] = data["나이"].astype(int).apply(utils.categorize_age_num)
+data["나이"] = data["나이"].astype(int).apply(category_utils.categorize_age_num)
 
 # 시간 카테고리
 data["발생시간"] = data["발생시간"].str.replace("시","")

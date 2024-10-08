@@ -2,39 +2,47 @@ import pandas as pd
 import math
 import sys, os
 import csv
-import matplotlib.pyplot as plt
+import numpy as np
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from modules import math_utils
-
 
 #공분산에 해당하는 데이터 
 gh_df = pd.read_csv("./md_algorithm/data/gh_categorize.csv")
 kosha_df = pd.read_csv("./md_algorithm/data/kosha_categorize.csv")
 
-# GH DATA
-#공사규모, 발생시간 행의 값이 동일하여 역행렬 불가능
-#공사규모(대,특대,중), 발생시간(1,2,3), 나이(35~38세) 랜덤으로 넣기
-
-#TODO 해당하는 열의 랜덤화 하여 넣기 
-
 #gh_data = gh_df[["공사규모","발생시간","근무경력","나이","월별","요일별"]]
 gh_data = gh_df[["근무경력","나이","월별","요일별"]]
 print("gh data : ", gh_data.shape)
+print(gh_data.head())
 
-# 근무경력 5년 이상 나이  50세 이하로 FILTERING
+print("-----------------Random Data 만들기--------------------")
+
+# GH DATA
+#공사규모, 발생시간 행의 값이 동일하여 역행렬 불가능
+# => 공사규모(대,특대,중), 발생시간(1,2,3), 나이(30~40대) 랜덤으로 넣기
+gh_df['공사규모'] = np.random.randint(1, 4, size=len(gh_df)) # 1,2,3
+gh_df['발생시간'] = np.random.randint(1, 4, size=len(gh_df)) # 1,2,3
+gh_df['나이'] = np.random.randint(4, 6, size=len(gh_df)) # 4, 5
+
+#랜덤한 파일 저장하기 
+gh_df.to_csv("./md_algorithm/data/gh_categorize_random.csv", encoding="utf-8")
+
+#공사규모, 발생시간, 나이 만든 랜덤 데이터 넣기 
+gh_data = gh_df[["공사규모","발생시간","근무경력","나이"]]
+
+# 근무경력 5년 이상 나이  50세 이하(6)로 FILTERING
 filtered_gh = gh_data[gh_data["근무경력"] >= 7]
-filtered_gh = filtered_gh[gh_data["나이"] <= 50]
+filtered_gh = filtered_gh[gh_data["나이"] <= 6]
 
 filtered_gh.to_csv("./md_algorithm/data/filtered_gh.csv", encoding="utf-8")
 print("filtered gh data : ", filtered_gh.shape)
 
 # KOSHA DATA
-# kosha_data = kosha_df[["공사규모","발생시간","근무경력","나이","월별","요일별"]]
-kosha_data = kosha_df[["근무경력","나이","월별","요일별"]]
+kosha_data = kosha_df[["공사규모","발생시간","근무경력","나이"]]
+# kosha_data = kosha_df[["근무경력","나이","월별","요일별"]]
 print("kosha data : ", kosha_data.shape)
 
 print("-------------------kosha Mahalanobis 구하기--------------------")
-
 # 비교할 기본값 filtered gh data
 test_robust_cov = math_utils.robust_cov(filtered_gh)
 

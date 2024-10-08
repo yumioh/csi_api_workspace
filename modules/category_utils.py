@@ -85,6 +85,29 @@ def categorize_service_years_num(service_year) :
         return 7
     else:
         return 8
+    
+# def categorize_age(age) :
+#     if age < 18  :
+#         return "18세미만"
+#     elif 18 <= age <= 24 :
+#         return "19~24세이하"
+#     elif 25 <= age <= 29 :
+#         return "25~29세이하"
+#     elif 30 <= age <= 34 :
+#         return "30~34세이하"
+#     elif 35 <= age <= 39 :
+#         return "36~39세이하"
+#     elif 40 <= age <= 44 :
+#         return "40~44세이하"
+#     elif 45 <= age <= 49 :
+#         return "45~49세이하"
+#     elif 50 <= age <= 54 :
+#         return "50~54세이하"
+#     elif 55 <= age <= 59 :
+#         return "55~59세이하"
+#     else:
+#         return "60세이상"
+
 
 # def categorize_age(age) :
 #     if age < 18 :
@@ -108,27 +131,25 @@ def categorize_service_years_num(service_year) :
 #     else:
 #         return "60세이상"
     
-# def categorize_age_num(age) :
-#     if age < 18 :
-#         return 1
-#     elif 18 <= age <= 24 :
-#         return 2
-#     elif 25 <= age <= 29 :
-#         return 3
-#     elif 30 <= age <= 34 :
-#         return 4
-#     elif 35 <= age <= 39 :
-#         return 5
-#     elif 40 <= age <= 44 :
-#         return 6
-#     elif 45 <= age <= 49 :
-#         return 7
-#     elif 50 <= age <= 54 :
-#         return 8
-#     elif 55 <= age <= 59 :
-#         return 9
-#     else:
-#         return 10
+def categorize_age_num(age) :
+    if age < 10 :
+        return 1
+    elif 10 <= age < 20 :
+        return 2
+    elif 20 <= age < 30 :
+        return 3
+    elif 30 <= age < 40 :
+        return 4
+    elif 40 <= age < 50 :
+        return 5
+    elif 50 <= age < 60 :
+        return 6
+    elif 60 <= age < 70 :
+        return 7
+    elif 70 <= age < 80 :
+        return 8
+    else :
+        return 9
 
 
 def categorize_scale(scale) :
@@ -144,22 +165,24 @@ def categorize_scale(scale) :
     else :
         return "9인미만"
 
-#소소(9인 미만) : 4 
-#소(9~50인 미만) : 3
-#중(50인~200인미만) : 2
-#대(200인이상) : 1
+#소소(9인 미만) : 5
+#소(9~50인 미만) : 4
+#중(50인~200인미만) : 3
+#대(200인이상) : 2
+#특대(200인이상) : 1
 def categorize_scale_num(scale) :
-    one = ["100인~299인","100인~499인"]
-    two = ["10인~99인","50인~99인"]
-    three = ["9인~50인"]
-    if scale in one :
-        return 1
-    elif scale in two :
+    one = []
+    two = ["100인~299인","100인~499인"]
+    three = ["10인~99인","50인~99인"]
+    four = ["9인~50인"]
+    if scale in two :
         return 2
     elif scale in three :
         return 3
-    else :
+    elif scale in four :
         return 4
+    else :
+        return 1
 
 #2시간 간격으로 변경
 def categorize_time(time) : 

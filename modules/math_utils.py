@@ -6,7 +6,6 @@ import pandas as pd
 #covariance 계산 방법
 #2차원 행렬로 반환해야 공분산 계산이 가능
 #데이터에 이상치가 많을때 MinCovDet()
-#데이터가 정규 분포를 따르고 이상치가 적을때 EmpiricalCovariance
 def robust_cov(df) :
     #이상치를 배제한 후 데이터의 일부를 사용하여 공분산 행렬을 계산
     robust_cov = MinCovDet().fit(df)
@@ -35,7 +34,7 @@ def calc_Mahalanobis(y=None, data=None, cov=None):
     return mahal
 
 #colum별로 csv로 나눠서 저장
-def save_mahalanobis_results(df, comparative_data, coulmns, cov, file_path) :
+def save_mahalanobis_by_col(df, comparative_data, coulmns, cov, file_path) :
     for column in coulmns:
         data_list = []
         df_values = df[column].values #values 인덱스나 컬럼 이름 없이 순수한 데이터 값만 포함
@@ -64,7 +63,7 @@ def calc_mahalanobis_df(df, comparative_data, columns, cov):
 
     return results
 
-#정규화 하기 
+#컬럼별 정규화 하기 
 def normalize_columns(df, columns):
     results = pd.DataFrame()
     for column in columns:
@@ -72,3 +71,10 @@ def normalize_columns(df, columns):
         normalized_values = (values - values.min()) / (values.max() - values.min())
         results[column] = normalized_values
     return results
+
+#정규화 하기
+def normailzed (df, combined_df, file_path) :
+    normalized_values = (df - df.min()) / (df.max() - df.min())
+    combined_df["mahal"] = normalized_values
+    print(combined_df[:10])
+    combined_df.to_csv(file_path)
