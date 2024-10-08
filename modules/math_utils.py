@@ -78,3 +78,22 @@ def normailzed (df, combined_df, file_path) :
     combined_df["mahal"] = normalized_values
     print(combined_df[:10])
     combined_df.to_csv(file_path)
+
+ #이상치 제외한 데이터 반환 함수 
+def remove_outliers(x,column):
+    if column is None :
+        data = x
+    else :
+        data = x[column]
+    # Q1, Q3 계산
+    q1 = data.quantile(0.25)
+    q3 = data.quantile(0.75)
+    iqr = q3 - q1
+    print("iqr : ", iqr)
+    y = x[(data >= (q1 - 1.5*iqr)) & (data <= (q3 + 1.5*iqr))]
+    print(f" 이상치 제거 후 데이터 {column} : ", y.shape)
+    # column이 주어졌을 경우 해당 컬럼만 반환
+    if column is None:
+        return y
+    else:
+        return y[column] 

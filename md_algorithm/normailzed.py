@@ -10,8 +10,8 @@ gh_df = pd.read_csv("./md_algorithm/data/gh_categorize_random.csv") #랜덤 데�
 
 
 #마할라로비스 계산한 kosha, gh 데이터 들고 오기
-gh_mal_df = pd.read_csv("./md_algorithm/data/gh_Mahal_list.csv", header = None)
-kosha_mal_df = pd.read_csv("./md_algorithm/data/kosha_Mahal_list.csv", header = None)
+gh_md_df = pd.read_csv("./md_algorithm/data/gh_Mahal_list.csv", header = None)
+kosha_md_df = pd.read_csv("./md_algorithm/data/kosha_Mahal_list.csv", header = None)
 
 #컬럼별 항목 나누기
 gh_filtered = pd.read_csv("./md_algorithm/data/filtered_gh.csv")
@@ -36,7 +36,7 @@ print("-------------------정규화 하기--------------------")
 
 #컬럼명 들고 오기
 #mal_columns = ["근무경력","나이","월별","요일별"] 
-mal_columns = ["공사규모","발생시간","근무경력","나이"]
+md_columns = ["공사규모","발생시간","근무경력","나이"]
 
 
 #categorize data
@@ -48,10 +48,12 @@ print(kosha_normalized)
 
 #최종파일 만들기
 kosha_file_path = "./md_algorithm/data/kosha_normalized.csv"
-math_utils.normailzed(kosha_mal_df, kosha_normalized, kosha_file_path)
+math_utils.normailzed(kosha_md_df, kosha_normalized, kosha_file_path)
 
 gh_file_path = "./md_algorithm/data/gh_normalized.csv"
-math_utils.normailzed(gh_mal_df, gh_normalized, gh_file_path)
+math_utils.normailzed(gh_md_df, gh_normalized, gh_file_path)
+
+
 
 
 
