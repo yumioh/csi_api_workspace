@@ -12,16 +12,38 @@ kosha_md_df = pd.read_csv("./md_algorithm/data/kosha_Mahal_list.csv", header = N
 
 # MD값 이상치 제거 및 인덱스 리셋
 outlier_gh_md = gh_md_df[(abs((gh_md_df[0] - gh_md_df[0].mean()) / gh_md_df[0].std()) > 1.96)].index
-gh_md_filtered = gh_md_df.drop(outlier_gh_md).reset_index(drop=True)
+gh_md_filtered = gh_md_df.drop(outlier_gh_md)
+gh_md_filtered.to_csv("./md_algorithm/data/gh_without_outline.csv",index = False)
 
 outlier_kosha_md = kosha_md_df[(abs((kosha_md_df[0] - kosha_md_df[0].mean()) / kosha_md_df[0].std()) > 1.96)].index
-kosha_md_filtered = kosha_md_df.drop(outlier_kosha_md).reset_index(drop=True)
+kosha_md_filtered = kosha_md_df.drop(outlier_kosha_md)
+kosha_md_filtered.to_csv("./md_algorithm/data/kosha_without_outline.csv",index = False)
 
 plt.boxplot([gh_md_filtered[0], kosha_md_filtered[0]]) 
 plt.title(f'GH vs KOSHA MD', fontdict={'weight': 'bold', 'size' : "20"}) #제목 및 라벨 설정
 plt.ylabel('Values')
 plt.xticks([1, 2], ['GH Data', 'KOSHA Data']) 
 plt.savefig(f"./md_algorithm/data/img/gh_kosha_boxplot.png")
+plt.show()
+
+print("------------------- GH vs KOSHA 산점도 그리기 --------------------")
+
+#오름차순으로 정렬 후 인덱스 재정렬
+arranged_gh = gh_md_filtered.sort_values(by=0).reset_index(drop=True)
+arranged_kosha = kosha_md_filtered.sort_values(by=0).reset_index(drop=True)
+# print(arranged_gh.head())
+# print(arranged_kosha.head())
+
+plt.rcParams['font.family'] ='Malgun Gothic'
+plt.rcParams['axes.unicode_minus'] = False
+plt.rcParams['boxplot.flierprops.markersize'] = 3
+plt.scatter(arranged_gh.index, arranged_gh.iloc[:, 0], color="violet", label="GH",s=10, marker="D")
+plt.scatter(arranged_kosha.index, arranged_kosha.iloc[:, 0], color="dodgerblue", alpha=0.4, label="KOSHA", s=10)
+plt.title(f"GH vs KOSHA (MD)",fontdict={'weight': 'bold', 'size' : "20"})
+plt.xlabel("Index")
+plt.ylabel("MD")
+plt.legend()
+plt.savefig(f"./md_algorithm/data/img/scatter_gh_kosha_reindexed.png")
 plt.show()
 
 print("-------------------kosha 박스플롯 그리기 --------------------")  
@@ -48,7 +70,7 @@ for column in columns :
 print("-------------------gh 박스플롯 그리기 --------------------")  
 gh = pd.read_csv("./md_algorithm/data/gh_normalized.csv")
 gh_md = gh["mahal"] 
-print("gh :", gh.describe())
+#rint("gh :", gh.describe())
 
 for column in columns : 
     plt.rcParams['font.family'] ='Malgun Gothic'
@@ -94,7 +116,7 @@ for column in columns:
     plt.show()
 
 
-# print("-------------------이상치 제거 후 GH KOSHA 항목별 산점도 그리기 --------------------")
+print("-------------------이상치 제거 후 GH KOSHA 항목별 산점도 그리기 --------------------")
 
 print(gh_df.head())
 for column in columns:
