@@ -1,5 +1,6 @@
 import pandas as pd
 import sys, os
+import numpy as np
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from modules import math_utils
 
@@ -32,29 +33,35 @@ coulmns = ["공사규모","발생시간","근무경력","나이"]
 # gh_mal_df.to_csv("./md_algorithm/data/gh_mahalanobis.csv", index=False)
 # print(gh_mal_df.head())
 
-print("-------------------정규화 하기--------------------")
+print("-------------------MD 데이터 정규화 하기--------------------")
 
 #컬럼명 들고 오기
 #mal_columns = ["근무경력","나이","월별","요일별"] 
 md_columns = ["공사규모","발생시간","근무경력","나이"]
 
+#gh normalize 
+gh_normalized = math_utils.normalize(gh_md_df, kosha_md_df)
+gh_normalized.to_csv("./md_algorithm/data/gh_normalized.csv", index=False)
+#print(gh_normalized.shape)
 
-#categorize data
-gh_normalized = math_utils.normalize_columns(gh_df, coulmns) 
-print(gh_normalized)
+#kosha normalize
+kosha_normalized = math_utils.normalize(kosha_md_df, gh_md_df)
+kosha_normalized.to_csv("./md_algorithm/data/kosha_normalized.csv", index=False)
+#print(kosha_normalized.shape)
 
-kosha_normalized = math_utils.normalize_columns(kosha_df, coulmns)
-print(kosha_normalized)
+print("-------------------log 데이터 정규화 하기--------------------")
 
-#최종파일 만들기
-kosha_file_path = "./md_algorithm/data/kosha_normalized.csv"
-math_utils.normailzed(kosha_md_df, kosha_normalized, kosha_file_path)
+#gh데이터에 0으로 값으로 된 데이터를 log로 계산하면 무한대 값으로 나와 정규화 계산불가 
+#0을 제외한 값 (gh : 16개, kosha : 0개) 
+gh_normalized = gh_normalized[gh_normalized['normalized'] > 0]
+gh_log = np.log(gh_normalized)
+kosha_log = np.log(kosha_normalized)
 
-gh_file_path = "./md_algorithm/data/gh_normalized.csv"
-math_utils.normailzed(gh_md_df, gh_normalized, gh_file_path)
+gh_log_normalized = math_utils.normalize(gh_log, kosha_log)
+kosha_log_normalized = math_utils.normalize(kosha_log, gh_log)
 
 
-
-
+gh_log_normalized.to_csv("./md_algorithm/data/gh_normalized_log.csv", index=False)
+kosha_log_normalized.to_csv("./md_algorithm/data/kosha_normalized_log.csv", index= False)
 
 

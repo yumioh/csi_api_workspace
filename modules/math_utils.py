@@ -73,11 +73,15 @@ def normalize_columns(df, columns):
     return results
 
 #정규화 하기
-def normailzed (df, combined_df, file_path) :
-    normalized_values = (df - df.min()) / (df.max() - df.min())
-    combined_df["mahal"] = normalized_values
-    print(combined_df[:10])
-    combined_df.to_csv(file_path)
+#최대 최소값을 구하기 위하여 gh와 kosha 데이터를 병합 
+def normalize(df1, df2):
+    #최대, 최소값을 구하기 위하여 병합
+    merged_df = pd.concat([df1, df2], axis=0)
+    normalized_values = (df1 - merged_df.min()) / (merged_df.max()-merged_df.min())
+    nor_df = pd.DataFrame()
+    nor_df['normalized'] = normalized_values
+    print(nor_df[:10], nor_df.shape)
+    return nor_df
 
  #이상치 제외한 데이터 반환 함수 
 def remove_outliers(x,column):
