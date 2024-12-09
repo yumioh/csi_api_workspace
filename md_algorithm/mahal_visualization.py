@@ -98,19 +98,30 @@ plt.savefig(f"./md_algorithm/data/img/gh_kosha_normalized.png")
 plt.show()
 
 print("------------------- GH vs KOSHA 정규화 로그 산점도 그리기 --------------------")
+# x축 : MD데이터 
+# y축 : 정규화한 log(MD)
+
+gh_log = pd.read_csv("./md_algorithm/data/gh_normalized_log.csv")
+kosha_log = pd.read_csv("./md_algorithm/data/kosha_normalized_log.csv")
+
+gh_outline_log = pd.read_csv("./md_algorithm/data/gh_outline_normalized_log.csv")
+kosha_outline_log = pd.read_csv("./md_algorithm/data/kosha_outline_normalized_log.csv")
 
 #오름차순으로 정렬 후 인덱스 재정렬
-gh_normalized_log = pd.read_csv("./md_algorithm/data/gh_normalized_log.csv")
-kosah_normalized_log = pd.read_csv("./md_algorithm/data/kosha_normalized_log.csv")
+gh_normalized_log = gh_log.sort_values(by="normalized").reset_index(drop=True)
+kosha_normalized_log = kosha_log.sort_values(by="normalized").reset_index(drop=True)
+
+gh_normalized_log = gh_outline_log.sort_values(by="normalized").reset_index(drop=True)
+kosha_normalized_log = kosha_outline_log.sort_values(by="normalized").reset_index(drop=True)
 
 plt.rcParams['font.family'] ='Malgun Gothic'
 plt.rcParams['axes.unicode_minus'] = False
 plt.rcParams['boxplot.flierprops.markersize'] = 3
 plt.scatter(gh_normalized_log.index, gh_normalized_log, color="dodgerblue", label="GH",s=8)
-plt.scatter(kosah_normalized_log.index, kosah_normalized_log, color="coral", alpha=0.4, label="KOSHA", s=8)
-plt.title(f"정규화된 GH vs KOSHA 로그 (MD)",fontdict={'weight': 'bold', 'size' : "20"})
+plt.scatter(kosha_normalized_log.index, kosha_normalized_log, color="coral", alpha=0.4, label="KOSHA", s=8)
+plt.title(f"정규화된 GH vs KOSHA (로그 MD)",fontdict={'weight': 'bold', 'size' : "20"})
 plt.xlabel("Index")
-plt.ylabel("MD")
+plt.ylabel("Normalized Log MD")
 plt.grid(True)
 plt.legend(loc='upper right')
 plt.savefig(f"./md_algorithm/data/img/gh_kosha_normalized_log.png")
@@ -234,22 +245,25 @@ print("-------------------이상치 제거 후 GH KOSHA 항목별 산점도 그�
 
 print("-------------------이상치 제거 전 GH KOSHA 항목별 산점도 그리기 --------------------")
 
-gh_df = pd.read_csv("./md_algorithm/data/gh_categorize_random.csv")
-kosha_df = pd.read_csv("./md_algorithm/data/kosha_categorize.csv")
-column = "나이"
+# gh_df = pd.read_csv("./md_algorithm/data/gh_categorize_random.csv")
+# kosha_df = pd.read_csv("./md_algorithm/data/kosha_categorize.csv")
+# column = "나이"
 
-#categories = ["2~4시", "20~22시", "4~6시", "22~24시", "0~2시", "18~20시", "6~8시", "16~18시", "12~14시", "14~16시", "8~10시", "10~12시"]
-#categories = ["6개월미만","6개월~1년","1~2년","2~3년","3~4년","4~5년","5~10년","10년이상"]
-categories = ["10대","20대","30대","40대","50대","60대","70대","80대이상"]
-x_positions = range(2,len(categories)+2)  # x축 위치 (0, 1, 2, 3)
+# #categories = ["2~4시", "20~22시", "4~6시", "22~24시", "0~2시", "18~20시", "6~8시", "16~18시", "12~14시", "14~16시", "8~10시", "10~12시"]
+# #categories = ["6개월미만","6개월~1년","1~2년","2~3년","3~4년","4~5년","5~10년","10년이상"]
+# categories = ["10대","20대","30대","40대","50대","60대","70대","80대이상"]
+# x_positions = range(2,len(categories)+2)  # x축 위치 (0, 1, 2, 3)
 
-plt.figure()
-plt.scatter(gh_df[column], gh_md_df[0], color="red", label="GH",s=10, marker="D")
-plt.scatter(kosha_df[column], kosha_md_df[0], color="dodgerblue", alpha=0.1, label="KOSHA", s=10)
-plt.title(f"{column} vs MD 거리 산점도",fontdict={'weight': 'bold', 'size' : "20"})
-plt.xlabel(f'{column} 데이터')
-plt.ylabel("MD 거리")
-plt.xticks(x_positions, categories, fontsize=8)
-plt.legend()
-plt.savefig(f"./md_algorithm/data/img/scatter_{column}_1.png")
-plt.show()
+# plt.figure()
+# plt.scatter(gh_df[column], gh_md_df[0], color="red", label="GH",s=10, marker="D")
+# plt.scatter(kosha_df[column], kosha_md_df[0], color="dodgerblue", alpha=0.1, label="KOSHA", s=10)
+# plt.title(f"{column} vs MD 거리 산점도",fontdict={'weight': 'bold', 'size' : "20"})
+# plt.xlabel(f'{column} 데이터')
+# plt.ylabel("MD 거리")
+# plt.xticks(x_positions, categories, fontsize=8)
+# plt.legend()
+# plt.savefig(f"./md_algorithm/data/img/scatter_{column}_1.png")
+# plt.show()
+
+
+print("------------------- GH vs KOSHA 정규화 로그 산점도 그리기 --------------------")

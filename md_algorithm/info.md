@@ -16,11 +16,11 @@
 4. 척도 적용 => 데이터가 없어 랜덤화한 데이터 넣기 
 5. 정규화 적용 =>  minmaxscaling
 
-시각화
+시각화 (X축 INDEX)
 1. MD 
-2. LOG MD
+2. MD -> LOG MD 
 3. MD -> normalize 
-4. MD -> normalize -> log -> normalize 
+4. MD -> log md -> normalize 
 
 6. 위험도 예측
 
