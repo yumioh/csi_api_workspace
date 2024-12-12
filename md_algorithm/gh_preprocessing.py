@@ -50,5 +50,5 @@ gh_df["요일별"]= gh_df["요일"].apply(category_utils.day_to_korean)
 
 gh_df[["공사규모","발생시간","근무경력","나이","월별","요일별","위험도"]].to_csv("./md_algorithm/data/gh_preprocessing.csv"
                                                    ,encoding="utf-8",index=False)
-print("저장할 데이터 head :", gh_df.head())
+print("저장할 데이터 head :", gh_df)
 print("저장할 데이터 shape :", gh_df.shape)
