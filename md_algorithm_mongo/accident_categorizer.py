@@ -36,9 +36,9 @@ class AccidentCategorizer:
         else:
             return 8
         
-    #근속년수 카테고리화
+    #공사규모 카테고리화
     @staticmethod
-    def categorize_scale_num(scale) :
+    def categorize_scale_text(scale) :
         one = []
         two = ["100인~299인","100인~499인"]
         three = ["10인~99인","50인~99인"]
@@ -51,30 +51,41 @@ class AccidentCategorizer:
             return 4
         else :
             return 1
-        
     
+    #공사규모 카테고리화
     @staticmethod
-    def categorize_time_num(time) :
+    def categorize_scale_number(scale) :
+        if 9 <= scale < 50:
+            return 2
+        elif 50 <= scale < 100 :
+            return 3
+        elif 100 <= scale < 500 :
+            return 4
+        else :
+            return 1
+        
+    @staticmethod
+    def categorize_time_range(time) :
         if 0 <= time < 2:
             return 5
-        if 2 <= time < 4:
+        elif 2 <= time < 4:
             return 1
-        if 4 <= time < 6:
+        elif 4 <= time < 6:
             return 3
-        if 6 <= time < 8:
+        elif 6 <= time < 8:
             return 7
-        if 8 <= time < 10:
+        elif 8 <= time < 10:
             return 11
-        if 10 <= time < 12:
+        elif 10 <= time < 12:
             return 12
-        if 12 <= time < 14:
+        elif 12 <= time < 14:
             return 9
-        if 14 <= time < 16:
+        elif 14 <= time < 16:
             return 10
-        if 16 <= time < 18:
+        elif 16 <= time < 18:
             return 8
-        if 18 <= time < 20:
+        elif 18 <= time < 20:
             return 6
-        if 20 <= time < 22:
+        elif 20 <= time < 22:
             return 2
         return 4
