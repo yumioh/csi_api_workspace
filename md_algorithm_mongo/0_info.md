@@ -66,6 +66,12 @@
 
  <br/>
  
+  **3. LightGBM** <br/> 
+    &nbsp; &nbsp; - 트리기반 학습 알고리즘으로 틀린부분에 가중치를 더하여 진행. <br/> 
+    - Grandient Boosting : 첫번째 단계에 tree 모델 1을 통해 Y를 예측, residual(true-predicted)을 다시 두번쨰 단계 tree 모델 2의 input으로 넣어주어 예측 <br/> 
+    &nbsp; &nbsp; &nbsp; 여기서 발생한 residual을 세번째 단계 tree모델 3의 input으로 넣어 예측. 이렇게 하면 잔차가 점점 작아짐 <br/> 
+    - leaf wise tree 분할 방식은 tree의 균형을 고려하지 않고 최대 손실값(max data loss)를 가지는 leaf node를 지속적으로 분할하면서 tree의 깊이가 깊어지고, 비대칭적인 tree가 생성. 이와 같이 최대 손실값을 가지는 leaf node를 반복 분할하는 방식은 level wise tree분할 방식보다 예측 오류 손실을 최소화
+
  - boxplot 분석을 통해 두집단(사고발생집단과 사고 비발생 집단)간에 차이가 크게 나타난 변수들을 선별
    <br/> => 선별된 변수는 공사규모, 사고발생시간, 근로자 나이, 근로자 경력 등 
  
