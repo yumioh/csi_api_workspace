@@ -64,7 +64,6 @@ combined_df = pd.concat([combined_df, non_accidents_df])
 manova = MANOVA.from_formula(f"{'+'.join(variables)} ~ 사고여부", data=combined_df)
 print(manova.mv_test())
 
-
 #랜덤포레스트 : 사고/비사고 데이터를 예측하는데 기여도가 높은 변수 평가
 X = combined_df[variables]
 y = combined_df['사고여부']
@@ -119,6 +118,5 @@ xgb_model.fit(X_train, y_train)
 #get_score(importance_type="gain") : 각 변수의 중요도 반환
 xgb_importance = xgb_model.get_booster().get_score(importance_type="gain")
 print("XGBoost 중요도 : ", xgb_importance)
-
 
 #발생시간, 근무경력, 나이, 발생월
