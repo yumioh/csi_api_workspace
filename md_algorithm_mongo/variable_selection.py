@@ -112,7 +112,6 @@ feature_names = X.columns
 for name, imp in zip(feature_names, importance):
     print(f"{name}: 중요도 = {imp:.3f}")
 
-
 #모델 학습
 xgb_model = xgb.XGBRFClassifier()
 xgb_model.fit(X_train, y_train)
@@ -120,3 +119,6 @@ xgb_model.fit(X_train, y_train)
 #get_score(importance_type="gain") : 각 변수의 중요도 반환
 xgb_importance = xgb_model.get_booster().get_score(importance_type="gain")
 print("XGBoost 중요도 : ", xgb_importance)
+
+
+#발생시간, 근무경력, 나이, 발생월

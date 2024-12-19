@@ -1,4 +1,4 @@
-from mongo_utils import MongoDBHandler
+from MongoUtils import MongoDBHandler
 from datetime import datetime
 
 
