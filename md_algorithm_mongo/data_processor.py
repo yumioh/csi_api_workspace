@@ -19,4 +19,12 @@ class DataProcessor :
         iqr = q3 - q1 #IQR
         lower_bound = q1 - 1.5*iqr
         upper_bound = q3 + 1.5*iqr
+        print(df.head())
         return df[(df[col] >= lower_bound) & (df[col] <= upper_bound)]
+    
+    def normalize(df, columns):
+        for col in columns:
+            col_min = df[col].min()
+            col_max = df[col].max()
+            df[col] = (df[col] - col_min) / (col_max - col_min)
+        return df
