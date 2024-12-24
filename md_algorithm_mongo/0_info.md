@@ -18,8 +18,8 @@
  - collection명 : accidents(사고데이터), non_accidents(비사고데이터)
 
 ## 데이터 전처리 
- 1. 사고데이터(KOSHA 데이터)  <br/>
- 
+1. 사고데이터(KOSHA 데이터)  <br/>
+
     |공통컬럼명|KOSHA 컬럼명|변경내역|
     |------|---|---|
     |나이|출생년도|별도 계산필요|
@@ -88,17 +88,18 @@
  <br/>
 
 **4. Boxplot 그리기** <br/> 
- - boxplot 분석을 통해 두집단(사고발생집단과 사고 비발생 집단)간에 분포 차이가 크게 나타난 변수들을 선별
-<div style="display: flex; justify-content: space-between; align-items: center;">
-    <img src="https://github.com/user-attachments/assets/ce457566-96a4-498d-a708-ecd90aa4a3d9" alt="Image 1" style="width: 300px;">
-    <img src="https://github.com/user-attachments/assets/b54f6a3d-87c3-46ff-abfe-7483aab7522d" alt="Image 2" style="width: 300px;">
-    <img src="https://github.com/user-attachments/assets/17d5b112-70b1-49f7-b18e-1ea07fc6b068" alt="Image 3" style="width: 300px;">
-</div> 
-<div style="display: flex; justify-content: space-between; align-items: center;">
-    <img src="https://github.com/user-attachments/assets/8e2973d3-6e60-4dd9-b301-6c7515825cbf" alt="Image 4" style="width: 300px;">
-    <img src="https://github.com/user-attachments/assets/cb17c559-98eb-4126-b83d-cf0d912d564e" alt="Image 5" style="width: 300px;">
-    <img src="https://github.com/user-attachments/assets/5a7aab26-02fa-4a71-8f4c-6a1c515e714a" alt="Image 6" style="width: 300px;">
-</div>
+ - boxplot 분석을 통해 두집단(사고발생집단과 사고 비발생 집단)간에 분포 차이가 크게 나타난 변수들을 선별   <br/>
+ 
+   <div style="display: flex; justify-content: space-between; align-items: center;">
+       <img src="https://github.com/user-attachments/assets/ce457566-96a4-498d-a708-ecd90aa4a3d9" alt="Image 1" style="width: 300px;">
+       <img src="https://github.com/user-attachments/assets/b54f6a3d-87c3-46ff-abfe-7483aab7522d" alt="Image 2" style="width: 300px;">
+       <img src="https://github.com/user-attachments/assets/17d5b112-70b1-49f7-b18e-1ea07fc6b068" alt="Image 3" style="width: 300px;">
+   </div> 
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <img src="https://github.com/user-attachments/assets/8e2973d3-6e60-4dd9-b301-6c7515825cbf" alt="Image 4" style="width: 300px;">
+        <img src="https://github.com/user-attachments/assets/cb17c559-98eb-4126-b83d-cf0d912d564e" alt="Image 5" style="width: 300px;">
+        <img src="https://github.com/user-attachments/assets/5a7aab26-02fa-4a71-8f4c-6a1c515e714a" alt="Image 6" style="width: 300px;">
+    </div>
 
 <br/> 
 
