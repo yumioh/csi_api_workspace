@@ -112,6 +112,16 @@
  **1. 공분산 행렬 계산** <br/> 
  - 사고, 비사고 데이터 각각 공분산 행렬 계산
 
+   ```
+       def robust_cov(data) :
+        #2차원 행렬로 반환을 해야 공분산 계산이 가능
+        #이상치를 배제한 후 데이터의 일부를 사용하여 공분산 행렬 계산
+        #data = data.to_numpy()
+        robust_cov = MinCovDet().fit(data)
+        return robust_cov.covariance_
+
+   ```
+
 공분산 행렬이란?
     
      * 데이터 세트의 변수들 사이의 공분산 값을 정리한 정방 행렬(square matrix)로, 데이터의 변수 개수에 따라 행렬의 크기가 결정
