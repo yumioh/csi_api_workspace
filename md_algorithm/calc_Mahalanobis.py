@@ -44,6 +44,7 @@ print("kosha data : ", kosha_data.shape)
 
 print("-------------------kosha Mahalanobis 구하기--------------------")
 # 비교할 기본값 filtered gh data
+print(filtered_gh.head())
 test_robust_cov = math_utils.robust_cov(filtered_gh)
 
 kosha_list = []
@@ -51,7 +52,7 @@ for kosha_value in kosha_data.values:
     kosha_data = math_utils.calc_Mahalanobis(kosha_value, filtered_gh.values, test_robust_cov)
     kosha_list.append(kosha_data)
 
-print("kosha Mahalanobis data :", kosha_list)
+#print("kosha Mahalanobis data :", kosha_list)
 
 #LIST 파일 저장
 with open("./md_algorithm/data/kosha_Mahal_list.csv","w") as file :

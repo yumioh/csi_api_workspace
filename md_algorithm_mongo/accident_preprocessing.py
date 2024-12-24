@@ -1,6 +1,6 @@
 import pandas as pd
 from datetime import datetime
-from md_algorithm_mongo.accident_categorizer import AccidentCategorizer
+from accident_categorizer import AccidentCategorizer
 
 '''
 출생년도 : 나이로 수정

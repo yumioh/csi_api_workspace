@@ -119,4 +119,4 @@ xgb_model.fit(X_train, y_train)
 xgb_importance = xgb_model.get_booster().get_score(importance_type="gain")
 print("XGBoost 중요도 : ", xgb_importance)
 
-#발생시간, 근무경력, 나이, 발생월
+#발생시간, 근무경력, 나이, 발생월을 변수로 선택
